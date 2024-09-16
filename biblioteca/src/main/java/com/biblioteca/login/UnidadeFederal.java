@@ -47,7 +47,6 @@ public enum UnidadeFederal {
         throw new IllegalArgumentException("Estado inválido: " + estado);
     }
 
-
     private final String nomePorExtenso;
     
     UnidadeFederal(String nomePorExtenso) {

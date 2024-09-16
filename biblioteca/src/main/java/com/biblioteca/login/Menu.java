@@ -31,6 +31,7 @@ public class Menu {
             System.out.println("7. Exibir Usuários");
             System.out.println("8. Avaliar Livro");
             System.out.println("9. Exibir Avaliações de Livro");
+            System.out.println("10. Exibir histórico de devoluções");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
@@ -67,6 +68,10 @@ public class Menu {
                     break;
                 case 9:
                     exibirAvaliacoes();
+                    pausar();
+                    break;
+                case 10:
+                    biblioteca.exibirDevolucoes();
                     pausar();
                     break;
                 case 0:
@@ -147,14 +152,18 @@ public class Menu {
             endereco.setEstado(estado);
             endereco.setCep(cep);
             endereco.setReferencia(referencia);
-    
+
             Usuario usuario = new Usuario(nome, cpf, dataNascimento, endereco, email, telefone, login, senha);
             biblioteca.cadastrarUsuario(usuario);
-            pausar();
-        } catch (Exception e) {
-            System.out.println("Erro ao cadastrar usuário: " + e.getMessage());
-        }
+            biblioteca.cadastrarUsuario(usuario);
+        System.out.println("Usuário cadastrado com sucesso.");
+    } catch (IllegalArgumentException e) {
+        System.out.println("Erro ao cadastrar usuário: " + e.getMessage());
+    } catch (Exception e) {
+        System.out.println("Erro inesperado: " + e.getMessage());
     }
+    pausar();
+}
 
     public void emprestarLivro() {
         System.out.println("=== Emprestar Livro ===");
